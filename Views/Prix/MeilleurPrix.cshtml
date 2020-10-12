@@ -1,0 +1,31 @@
+﻿@model ProjetDotN.Models.Prix
+@{
+    ViewData["Title"] = "MeilleurPrix";
+}
+
+    <div class="container col-md-8 col-md-offset-2 col-xs-12 ">
+        <div class="card">
+            <div class="card-body backgroundC">
+                <div class="container">
+                    Bonjour Client le meilleur prix pour vous est : <strong style="font-size:20px;">@ViewBag.minPrix DH</strong>
+                    <hr />
+                    <h4 class="title"><i class="fa fa-info-circle" aria-hidden="true"></i> Information sur le vendeur :</h4> <hr />
+                    <div class="vendeur">
+                        <img src="~/imgs/boutique.png" alt="boutique" width="200" height="200" class="float-right col-md-4 boutique" />
+                        <div class="float-left col-md-4 info">
+                            <label class="label1">Nom :</label><strong>@ViewBag.vendeur.Nom</strong><hr />
+                            <label class="label1">Ville :</label><strong>@ViewBag.vendeur.Ville.Nom</strong><hr />
+                            <label class="label1">Distance :</label><strong>@ViewBag.distance KM</strong><hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary float-left">Acheter</a>
+                <a asp-action="Index"  class="btn btn-primary float-right">Retour</a>
+            </div>
+        </div>
+    </div>
+
+
+

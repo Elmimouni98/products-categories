@@ -1,0 +1,58 @@
+﻿@model ProjetDotN.Models.Categorie
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container col-md-6 col-md-offset-3 col-xs-12 ">
+    <div class="card">
+        <div class="card-header title">
+            <i class="fas fa-info"></i> Details du client
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-md-4 col-sm-4">
+                    @Html.DisplayNameFor(model => model.Nom):
+                </dt>
+                <dd class="col-md-8 col-sm-8">
+                    @Html.DisplayFor(model => model.Nom)
+                </dd>
+                <dt class="col-md-4 col-sm-4">
+                    @Html.DisplayNameFor(model => model.produits):
+                </dt>
+                <dd class="col-md-12 col-sm-8" style="margin-top:10px;">
+                    <table class="table">
+                        <tr>
+                            <th>Nom</th><th>Prix (DH)</th><th>Vendeur</th><th>Ville de vendeur</th>
+                        </tr>
+                        @{
+                            foreach (var p in ViewBag.produits)
+                            {
+                                  <tr>
+                                       <td>
+                                            @p.Designation
+                                       </td>
+                                       <td>
+                                            @p.Prix.Price
+                                       </td>
+                                       <td>
+                                            @p.Vendeur.Nom
+                                       </td>
+                                       <td>
+                                            @p.Vendeur.Ville.Nom
+                                       </td>
+                                  </tr>
+                            }
+                        }
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <a asp-action="Edit" asp-route-id="@Model.CategorieID" class="btn btn-warning float-left">Editer</a>
+            <a asp-action="Index" class="float-right btn btn-primary">Retourner à  la liste</a>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,49 @@
+﻿@model ProjetDotN.Models.Vendeur
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="container col-md-6 col-md-offset-3 col-xs-12 ">
+    <div class="card">
+        <div class="card-header title">
+            <i class="fa fa-plus" aria-hidden="true"></i> Ajouter un vendeur
+        </div>
+        <form asp-action="Add">
+            <div class="card-body">
+                <div class="form-row">
+                    <label class="control-label col-md-4 col-xs-12">Nom : </label>
+                    <input type="text" name="Nom" class="form-control col-md-8 col-xs-12" value="@Model.Nom" />
+                    <span asp-validation-for="Nom" class="text-danger errMargin"></span>
+                </div>
+                <br />
+                <div class="form-row">
+                    <label class="control-label col-md-4 col-xs-12">Ville : </label>
+                    <select name="VilleID" class="form-control col-md-8 col-xs-12">
+                        <option value="" selected>choisir une ville</option>
+                        @{
+                            foreach (var v in ViewBag.villes)
+                            {
+                                <option value="@v.VilleID">@v.Nom</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="Ville.Nom" class="text-danger errMargin"></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="footerEdit">
+                    <input type="submit" value="Sauvegarder" class="btn btn-success float-left" />
+                    <a asp-action="Index" class="float-right btn btn-primary">Retourner à  la liste</a>
+                </div><br />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

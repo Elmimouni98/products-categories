@@ -1,0 +1,44 @@
+﻿@model ProjetDotN.Models.Distance
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container col-md-6 col-md-offset-3 col-xs-12 ">
+    <div class="card">
+        <div class="card-header title">
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Vous voulez vraiment supprimer cette distance?
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-md-4 col-sm-4">
+                    @Html.DisplayNameFor(model => model.VilleDepart)
+                </dt>
+                <dd class="col-md-8 col-sm-8">
+                    @Html.DisplayFor(model => model.VilleDepart.Nom)
+                </dd>
+                <dt class="col-md-4 col-sm-4">
+                    @Html.DisplayNameFor(model => model.VilleArrive)
+                </dt>
+                <dd class="col-md-8 col-sm-8">
+                    @Html.DisplayFor(model => model.VilleArrive.Nom)
+                </dd>
+                <dt class="col-md-4 col-sm-4">
+                    @Html.DisplayNameFor(model => model.distance)
+                </dt>
+                <dd class="col-md-8 col-sm-8">
+                    @Html.DisplayFor(model => model.distance)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer">
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="VilleDepartID" />
+                <input type="hidden" asp-for="VilleArriveID" />
+                <input type="submit" value="Supprimer" class="btn btn-danger float-left" />
+                <a asp-action="Index" class="float-right btn btn-primary">Retourner à  la liste</a>
+            </form>
+        </div>
+    </div>
+</div>
+

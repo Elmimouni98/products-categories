@@ -1,0 +1,36 @@
+﻿@model ProjetDotN.Models.Categorie
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<div class="container col-md-6 col-md-offset-3 col-xs-12 ">
+    <div class="card">
+        <div class="card-header title">
+            <i class="fa fa-plus" aria-hidden="true"></i> Ajouter une catégorie
+        </div>
+        <form asp-action="Add">
+            <div class="card-body">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-row">
+                    <label asp-for="Nom" class="control-label col-md-4 col-xs-12"></label>
+                    <input asp-for="Nom" class="form-control col-md-8 col-xs-12" />
+                    <span asp-validation-for="Nom" class="text-danger errMargin"></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="footerEdit">
+                    <input type="submit" value="Sauvegarder" class="btn btn-success float-left" />
+                    <a asp-action="Index" class="float-right btn btn-primary">Retourner à  la liste</a>
+                </div><br />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+

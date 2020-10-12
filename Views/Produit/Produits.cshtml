@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProjetDotN.Models.Produit>
+
+<div class="container col-md-10 col-md-offset-1 col-xs-12 ">
+    <div class="card">
+        <div class="card-header bg-info"><h4 class="title"><i class="fa fa-list" aria-hidden="true"></i> Liste des produits</h4></div>
+        <div class="card-body backgroundC">
+            <div class="container">
+                <form method="get" asp-action="Index">
+                    <section class="row">
+                        <input type="text" name="search" class="form-control col-md-6 col-sm-12" placeholder="Saisir un produit" autocomplete="off" />
+                        <button type="submit" class="btn btn-info col-md-1 spacer"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <a class="btn btn-primary col-md-3 float-right spacer2" asp-action="Add"><i class="fa fa-plus" aria-hidden="true"></i> Ajouter un produit</a>
+                    </section>
+                </form>
+            </div>
+            <br />
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(p => p.Designation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(p => p.Categorie.Nom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(p => p.Prix.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(p => p.Vendeur.Nom)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(p => p.Vendeur.Ville.Nom)
+                    </th>
+                </tr>
+                @{
+                    foreach (var p in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => p.Designation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => p.Categorie.Nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => p.Prix.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => p.Vendeur.Nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x => p.Vendeur.Ville.Nom)
+                            </td>
+                            <td><a class="btn btn-danger" asp-route-id="@p.ProduitID" asp-action="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-success" asp-route-id="@p.ProduitID" asp-action="Details"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-warning" asp-route-id="@p.ProduitID" asp-action="Edit"><i class="fa fa-edit"></i></a></td>
+                            <td><a class="btn btn-info" asp-route-id="@p.ProduitID" asp-action="Command"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></td>
+                        </tr>
+                    }
+                }
+            </table>
+            <div>
+                <ul class="pagination">
+                    @{
+                        for (int i = 0; i < ViewBag.totalPages; i++)
+                        {
+                            String className = "";
+                            if (ViewBag.currentPage == i)
+                            {
+                                className = "active";
+                            }
+                            <li class="page-item @className"><a asp-action="Index" asp-route-page="@i" asp-route-search="@ViewBag.search" class="page-link">@i</a></li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

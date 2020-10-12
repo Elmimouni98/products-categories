@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ProjetDotN.Models.Commande>
+<div class="container col-md-10 col-md-offset-1 col-xs-12 ">
+    <div class="card">
+        <div class="card-header bg-info"><h4 class="title"><i class="fa fa-list" aria-hidden="true"></i> Liste des commandes</h4></div>
+        <div class="card-body backgroundC">
+            <div class="container">
+                <form method="get" asp-action="Index">
+                    <section class="row">
+                        <input type="text" name="search" class="form-control col-md-6 col-sm-12" placeholder="Saisir une commande" autocomplete="off" />
+                        <button type="submit" class="btn btn-info col-md-1 spacer"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </section>
+                </form>
+            </div>
+            <br />
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(c => c.CommandeID)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Produit.Designation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Quantite)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(c => c.Client.Nom)
+                    </th>
+                </tr>
+                @{
+                    foreach (var c in Model)
+                    {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(x => c.CommandeID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => c.Produit.Designation)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => c.Quantite)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(x => c.Client.Nom)
+                                    </td>
+                                    <td><a class="btn btn-danger" asp-route-id="@c.CommandeID" asp-action="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+                                    <td><a class="btn btn-success" asp-route-id="@c.CommandeID" asp-action="Details"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                                    <td><a class="btn btn-warning" asp-route-id="@c.CommandeID" asp-action="Edit"><i class="fa fa-edit"></i></a></td>
+                                </tr>
+                    }
+                }
+            </table>
+            <div>
+                <ul class="pagination">
+                    @{
+                        for (int i = 0; i < ViewBag.totalPages; i++)
+                        {
+                            String className = "";
+                            if (ViewBag.currentPage == i)
+                            {
+                                className = "active";
+                            }
+                            <li class="page-item @className"><a asp-action="Index" asp-route-page="@i" asp-route-search="@ViewBag.search" class="page-link">@i</a></li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

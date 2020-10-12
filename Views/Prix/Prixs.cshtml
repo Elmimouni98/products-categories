@@ -1,0 +1,28 @@
+﻿@model ProjetDotN.Models.Prix
+@{
+    ViewData["Title"] = "Prixs";
+}
+
+<div class="container col-md-6 col-md-offset-3 col-xs-12 ">
+    <div class="card backgroundC" style="padding:20px;margin-top:30px;">
+        <form asp-action="MeilleurPrix">
+            <div class="form-row">
+                <label class="control-label col-md-3 col-xs-12">Produit : </label>
+                <input type="text" name="designation" class="form-control col-md-9 col-xs-12" placeholder="Nom du produit" />
+            </div>
+            <br />
+            <div class="form-row">
+                <label class="control-label col-md-3 col-xs-12">Ville de départ : </label>
+                <input type="text" name="villeDepart" class="form-control col-md-9 col-xs-12" placeholder="Ville de client" />
+            </div>
+            <br />
+            <button type="submit" style="margin-left:40%;" class="btn btn-primary">Chercher</button>
+        </form>
+
+    </div>
+</div>
+<div class="container col-md-6 col-md-offset-3 col-xs-12 " style="margin-top:10px">
+    <div class="card backgroundC" style="padding:20px;margin-top:30px;">
+        <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Veuillez saisir le produit et la ville exactes !</p>
+    </div>
+</div>
